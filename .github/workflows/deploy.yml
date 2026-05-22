@@ -1,0 +1,40 @@
+name: Deploy Clinic Site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.html'
+      - '**.css'
+      - '**.js'
+      - '**.json'
+      - '.github/workflows/**'
+  workflow_dispatch:
+    inputs:
+      tenant_id:
+        description: 'Tenant to deploy'
+        required: true
+        default: 'hisham'
+
+jobs:
+  validate-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate Site Structure
+        run: |
+          echo "Tenant: ${{ github.event.inputs.tenant_id || 'hisham' }}"
+          echo "Site files:"
+          ls -la
+          test -f index.html || (echo "Missing index.html" && exit 1)
+          echo "✓ index.html exists"
+          echo "✓ Build validation complete"
+
+      - name: Post Deploy Status
+        if: always()
+        run: |
+          echo "Deployment status: ${{ job.status }}"
+          echo "Tenant: hisham"
+          echo "URL: https://dr-hisham-clinic-pink.vercel.app"
