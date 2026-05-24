@@ -1,18 +1,39 @@
 {
   "tenant_id": "hisham",
-  "domain": "dr-hisham-clinic-pink.vercel.app",
-  "brand": {
-    "primary_color": "#b8935a",
-    "logo_path": null
+  "clinic_name": "The Specialized First Clinic",
+  "specialization": "otorhinolaryngology",
+  "localization": {
+    "default_lang": "en",
+    "supported_langs": ["en", "ar"]
   },
-  "deployment": {
-    "vercel_project_id": "dr-hisham-clinic",
-    "environment": "production"
+  "theme_tokens": {
+    "variant": "clinical-minimalist",
+    "primary_color": "#0B2545",
+    "secondary_color": "#134074",
+    "typography": "sans-serif"
   },
-  "compliance": {
-    "region": "EU-FRANKFURT",
-    "data_residency": "gdpr"
+  "active_modules": [
+    "hero_consultant_profile",
+    "ent_clinical_accordion",
+    "whatsapp_direct_routing",
+    "patient_intake_triage_v1",
+    "floating_ai_concierge_v1"
+  ],
+  "module_data": {
+    "whatsapp_direct_routing": {
+      "phone_number": "+962XXXXXXXXX",
+      "prefilled_message": "Hello Dr. Hisham, I would like to request an expert clinical evaluation."
+    },
+    "floating_ai_concierge_v1": {
+      "greeting_message": "Hello, how can I help you today?",
+      "system_prompt_path": "/prompts/clinic_concierge.txt"
+    }
   },
-  "sprint": "SPRINT-001",
-  "target_date": "2026-05-31"
+  "compliance_boundary": {
+    "static_hosting_region": "us-east-1",
+    "phi_storage_region": "supabase-aws-[region]",
+    "baas_provider": "supabase",
+    "baas_endpoint": null,
+    "baas_status": "active-sprint001-sandbox"
+  }
 }
