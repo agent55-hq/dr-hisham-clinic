@@ -37,7 +37,7 @@
    */
   const COMPONENT_SCRIPTS = {
     hero_consultant_profile:      'src/components/HeroConsultantProfile.jsx',
-    ent_clinical_accordion:       'src/components/EntClinicalAccordion.jsx',
+    ent_clinical_accordion:       'src/components/ClinicalAccordion.jsx',
     whatsapp_direct_routing:      'src/components/WhatsAppDirectRouting_STUB.jsx',
     patient_intake_triage_v1:     'src/components/PatientIntakeTriage_CRM_v1_STUB.jsx',
     floating_ai_concierge_v1:     'src/components/FloatingAIConcierge_v1_STUB.jsx',
