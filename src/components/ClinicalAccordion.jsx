@@ -28,9 +28,18 @@
   // Mock fallback (only when config provides nothing usable)
   if (!specializations.length) {
     specializations = [
-      { title: 'Advanced Otology',          description: 'placeholder' },
-      { title: 'Rhinology',                  description: 'placeholder' },
-      { title: 'Endoscopic Sinus Surgery',   description: 'placeholder' },
+      {
+        title: 'Advanced Otology',
+        description: 'Comprehensive care for hearing loss, chronic ear infections, and vestibular disorders. Surgical expertise in tympanoplasty, mastoidectomy, and cochlear implant candidacy assessment.'
+      },
+      {
+        title: 'Rhinology',
+        description: 'Expert management of nasal obstruction, allergic rhinitis, and chronic sinusitis. Advanced endoscopic techniques for minimally invasive sinus surgery and skull base access.'
+      },
+      {
+        title: 'Endoscopic Sinus Surgery',
+        description: 'State-of-the-art functional endoscopic sinus surgery (FESS) for chronic rhinosinusitis, nasal polyps, and fungal sinus disease. Image-guided navigation for complex revision cases.'
+      },
     ];
   }
 
@@ -166,6 +175,14 @@
         grid-template-rows: 1fr;
         opacity: 1;
       }
+      .a55-accordion__desc {
+        font-family: var(--arabic, 'Tajawal', sans-serif);
+        font-size: clamp(0.9rem, 2vw, 1rem);
+        line-height: 1.7;
+        color: var(--text2, #6b5a47);
+        padding: 0 24px 28px;
+        max-width: 72ch;
+      }
       @media (max-width: 768px) {
         .a55-accordion { padding: 60px 20px; }
       }
@@ -188,7 +205,7 @@
 
     const heading = document.createElement('h2');
     heading.className = 'a55-accordion__heading';
-    heading.textContent = 'Areas of Practice';
+    heading.textContent = 'Clinical Excellence \u2014 Areas of Practice';
 
     const grid = document.createElement('div');
     grid.className = 'a55-accordion__grid';
@@ -237,7 +254,12 @@
 
       const inner = document.createElement('div');
       inner.className = 'inner';
-      inner.textContent = item.description || '';
+
+      const desc = document.createElement('p');
+      desc.className = 'a55-accordion__desc';
+      desc.textContent = item.description || '';
+
+      inner.appendChild(desc);
       body.appendChild(inner);
 
       card.appendChild(header);
