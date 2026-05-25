@@ -25,8 +25,8 @@
     style.textContent = `
       .a55-concierge-fab {
         position: fixed;
-        bottom: calc(24px + env(safe-area-inset-bottom, 0px));
-        right: 24px;
+        bottom: calc(24px + env(safe-area-inset-bottom));
+        inset-inline-end: 24px;
         z-index: 50;
         width: 56px;
         height: 56px;
@@ -52,8 +52,8 @@
       }
       .a55-concierge-tray {
         position: fixed;
-        bottom: calc(24px + env(safe-area-inset-bottom, 0px));
-        right: 24px;
+        bottom: calc(24px + env(safe-area-inset-bottom));
+        inset-inline-end: 24px;
         z-index: 51;
         width: clamp(280px, 90vw, 360px);
         height: clamp(320px, 50vh, 480px);
@@ -93,7 +93,11 @@
         font-size: 1.2rem;
         cursor: pointer;
         color: var(--text3, #9e8b78);
-        padding: 4px;
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         line-height: 1;
       }
       .a55-concierge-tray__body {
@@ -108,14 +112,14 @@
       }
       @media (max-width: 768px) {
         .a55-concierge-fab {
-          bottom: calc(20px + env(safe-area-inset-bottom, 0px));
-          right: 20px;
+          bottom: calc(20px + env(safe-area-inset-bottom));
+          inset-inline-end: 20px;
           width: 52px;
           height: 52px;
         }
         .a55-concierge-tray {
-          bottom: calc(20px + env(safe-area-inset-bottom, 0px));
-          right: 20px;
+          bottom: calc(20px + env(safe-area-inset-bottom));
+          inset-inline-end: 20px;
           width: calc(100vw - 40px);
         }
       }
