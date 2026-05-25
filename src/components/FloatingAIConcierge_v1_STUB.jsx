@@ -1,15 +1,18 @@
 /**
  * FloatingAIConcierge_v1_STUB.jsx
  * Module: floating_ai_concierge_v1
- * SPRINT-001 — Engineer Node (Demo-Ready Mock Chat)
+ * SPRINT-001 — Engineer Node (Demo-Ready B2B Onboarding Wizard)
  *
  * Core rules:
  * - Fixed-position FAB button outside document flow.
- * - On click: opens a premium slide-up chat tray with pre-scripted mock conversation.
+ * - On click: opens a premium slide-up chat tray with pre-scripted mock B2B onboarding flow.
  * - Close button inside tray. Escape key handler.
  * - Uses env(safe-area-inset-bottom) for iPhone notch safety.
  * - 44px minimum touch targets. text-align: start for RTL safety.
  * - No backend. All responses are pre-scripted and timed for demo flow.
+ *
+ * Purpose: Nexius Clinics Discovery Agent — B2B onboarding wizard that interviews
+ *          doctors to configure their clinic platform and upsells premium features.
  */
 
 (function () {
@@ -17,15 +20,15 @@
 
   const CONFIG = window.TENANT_CONFIG || {};
   const MOD_DATA = CONFIG.module_data?.floating_ai_concierge_v1 || {};
-  const GREETING = MOD_DATA.greeting_message || "Hello! Welcome to The Specialized First Clinic. I'm your digital assistant. How may I help you today?";
 
-  /* ═══ Pre-scripted conversation ═══ */
+  /* ═══ Pre-scripted B2B onboarding conversation ═══ */
   const SCRIPT = [
-    { sender: 'ai',    text: GREETING,                                         delay: 600 },
-    { sender: 'user',  text: "I've been having sinus problems for months",         delay: 1800 },
-    { sender: 'ai',    text: "I understand you've been dealing with chronic sinus issues. Dr. Hisham is our senior ENT consultant with 35 years of experience in endoscopic sinus surgery. Would you like me to prepare a priority consultation request, or would you prefer to explore our advanced diagnostic options first?", delay: 2800 },
-    { sender: 'user',  text: "Priority consultation please",                         delay: 2200 },
-    { sender: 'ai',    text: "Excellent choice. I've prepared a priority triage brief for you. Please click below to send it directly to our clinic coordinator via WhatsApp. You'll receive a response within 2 hours during business days. 🏥✨", delay: 2800, cta: true },
+    { sender: 'ai',   text: "Welcome to Nexius Clinics. I am your Platform Architect. Let's design your VIP digital presence, Dr. Hisham. Which core procedures do you want highlighted on your main landing page?", delay: 700 },
+    { sender: 'user', text: "Endoscopic sinus surgery and advanced otology.", delay: 1800 },
+    { sender: 'ai',   text: "Excellent. I will configure the Clinical Accordion for those specialties. Next, how would you like to handle patient intake? We can route standard inquiries to your secretary via WhatsApp, or we can activate the VIP AI Triage module to pre-screen symptoms and gather medical history before they book. Which do you prefer?", delay: 2600 },
+    { sender: 'user', text: "Let's include the VIP AI Triage.", delay: 1800 },
+    { sender: 'ai',   text: "Premium feature added to your configuration. I am compiling your bespoke platform now.", delay: 2200 },
+    { sender: 'ai',   text: "Your configuration is complete. Here's your platform summary: Clinical Accordion — Endoscopic Sinus Surgery, Advanced Otology. Patient Routing — VIP AI Triage + WhatsApp Direct. Estimated setup time: 48 hours. Would you like to proceed with deployment?", delay: 2800, final: true },
   ];
 
   /* ═══ Styles (injected once) ═══ */
@@ -65,7 +68,7 @@
         position: fixed;
         bottom: calc(24px + env(safe-area-inset-bottom));
         inset-inline-end: 24px;
-        z-index: 51;
+        z-index: 50;
         width: clamp(300px, 92vw, 400px);
         height: clamp(420px, 65vh, 560px);
         background: var(--warm, #faf8f4);
@@ -95,6 +98,11 @@
         border-bottom: 1px solid rgba(184,147,90,0.25);
         flex-shrink: 0;
       }
+      .a55-concierge-tray__header-text {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
       .a55-concierge-tray__title {
         font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
         font-size: clamp(1rem, 3vw, 1.15rem);
@@ -102,6 +110,14 @@
         color: var(--gold, #b8935a);
         letter-spacing: 0.02em;
         line-height: 1.3;
+      }
+      .a55-concierge-tray__subtitle {
+        font-family: var(--arabic, 'Tajawal', sans-serif);
+        font-size: clamp(0.65rem, 1.8vw, 0.75rem);
+        font-weight: 400;
+        color: rgba(184,147,90,0.75);
+        text-align: start;
+        letter-spacing: 0.04em;
       }
       .a55-concierge-tray__close {
         background: none;
@@ -150,6 +166,7 @@
         background: #fff;
         color: var(--text, #2c2218);
         border: 1px solid var(--border-l, rgba(184,147,90,0.08));
+        border-inline-start: 3px solid rgba(184,147,90,0.35);
         border-end-start-radius: 4px;
         box-shadow: 0 1px 4px rgba(0,0,0,0.04);
       }
@@ -171,6 +188,7 @@
         align-self: flex-start;
         background: #fff;
         border: 1px solid var(--border-l, rgba(184,147,90,0.08));
+        border-inline-start: 3px solid rgba(184,147,90,0.35);
         border-radius: 14px;
         border-end-start-radius: 4px;
         box-shadow: 0 1px 4px rgba(0,0,0,0.04);
@@ -215,8 +233,45 @@
       }
       .a55-chat-cta:active { transform: translateY(0); }
       .a55-chat-cta::before {
-        content: '\u2197';
+        content: '\2197';
         font-size: 0.9em;
+      }
+      .a55-chat-deploy-cta {
+        align-self: center;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 28px;
+        border-radius: 12px;
+        background: var(--deep, #1a1410);
+        color: var(--gold, #b8935a);
+        font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
+        font-size: clamp(0.9rem, 2.4vw, 1.05rem);
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        border: 2px solid var(--gold, #b8935a);
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+        animation: a55-bubbleIn 0.4s ease-out both;
+        text-decoration: none;
+        margin-top: 8px;
+        margin-bottom: 4px;
+      }
+      .a55-chat-deploy-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        background: #0f0a06;
+      }
+      .a55-chat-deploy-cta:active {
+        transform: translateY(0);
+      }
+      .a55-chat-deploy-cta::after {
+        content: '\2192';
+        font-size: 1.1em;
+        transition: transform 0.2s;
+      }
+      .a55-chat-deploy-cta:hover::after {
+        transform: translateX(3px);
       }
       .a55-concierge-tray__footer {
         flex-shrink: 0;
@@ -266,8 +321,8 @@
     fab.className = 'a55-concierge-fab a55-module a55-module--floating_ai_concierge_v1';
     fab.dataset.moduleId = 'floating_ai_concierge_v1';
     fab.type = 'button';
-    fab.setAttribute('aria-label', 'AI Concierge');
-    fab.textContent = '\u{1F916}';
+    fab.setAttribute('aria-label', 'Nexius Architect Agent');
+    fab.textContent = '\u{2699}';
 
     // Tray
     const tray = document.createElement('div');
@@ -280,10 +335,20 @@
     const header = document.createElement('div');
     header.className = 'a55-concierge-tray__header';
 
+    const headerText = document.createElement('div');
+    headerText.className = 'a55-concierge-tray__header-text';
+
     const title = document.createElement('h3');
     title.id = 'a55-concierge-title';
     title.className = 'a55-concierge-tray__title';
-    title.textContent = 'AI Concierge \u2014 The Specialized First Clinic';
+    title.textContent = 'Nexius Architect Agent \u2014 Platform Configuration';
+
+    const subtitle = document.createElement('span');
+    subtitle.className = 'a55-concierge-tray__subtitle';
+    subtitle.textContent = 'B2B Clinic Onboarding Wizard';
+
+    headerText.appendChild(title);
+    headerText.appendChild(subtitle);
 
     const closeBtn = document.createElement('button');
     closeBtn.className = 'a55-concierge-tray__close';
@@ -291,7 +356,7 @@
     closeBtn.setAttribute('aria-label', 'Close');
     closeBtn.innerHTML = '&times;';
 
-    header.appendChild(title);
+    header.appendChild(headerText);
     header.appendChild(closeBtn);
 
     const chatBody = document.createElement('div');
@@ -305,7 +370,7 @@
     input.type = 'text';
     input.disabled = true;
     input.setAttribute('aria-disabled', 'true');
-    input.placeholder = 'Demo mode \u2014 interactive chat coming in SPRINT-002';
+    input.placeholder = 'Demo mode \u2014 full interactive onboarding coming in SPRINT-002';
 
     footer.appendChild(input);
 
@@ -375,30 +440,20 @@
       scrollToBottom();
     }
 
-    function addCTA() {
-      const btn = document.createElement('a');
-      btn.className = 'a55-chat-cta';
-      btn.textContent = 'Send Priority Request';
-      btn.href = '#';
-      btn.setAttribute('role', 'button');
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
+    function addDeployCTA() {
+      const btn = document.createElement('button');
+      btn.className = 'a55-chat-deploy-cta';
+      btn.textContent = 'Deploy My Platform';
+      btn.type = 'button';
+      btn.addEventListener('click', () => {
         btn.style.pointerEvents = 'none';
         btn.style.opacity = '0.5';
         // Show confirmation message
         const confirm = document.createElement('div');
         confirm.className = 'a55-chat-bubble a55-chat-bubble--ai';
-        confirm.textContent = 'Thank you! Your request has been prepared. Opening WhatsApp...';
+        confirm.textContent = 'Deployment request submitted. Our engineering team will contact you within 48 hours to finalize your bespoke platform. Welcome to Nexius Clinics.';
         container.appendChild(confirm);
         scrollToBottom();
-        // Simulate WhatsApp open
-        setTimeout(() => {
-          const phone = CONFIG.module_data?.whatsapp_direct_routing?.phone_number || '+962795521527';
-          const msg = encodeURIComponent(
-            "Hello Dr. Hisham, I would like to request a priority consultation for chronic sinus issues. I was referred by the AI concierge."
-          );
-          window.open('https://wa.me/' + phone.replace(/\D/g, '') + '?text=' + msg, '_blank');
-        }, 1200);
       });
       container.appendChild(btn);
       scrollToBottom();
@@ -414,7 +469,7 @@
         setTimeout(() => {
           removeTyping();
           addMessage(item.text, 'ai');
-          if (item.cta) addCTA();
+          if (item.final) addDeployCTA();
           setTimeout(step, item.delay || 1200);
         }, 1400);
       } else {
