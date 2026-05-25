@@ -16,7 +16,7 @@
   const MODULES = CONFIG.active_modules || [];
   const THEME = CONFIG.theme_tokens || {};
 
-  /* ═══ Layout position registry (DOM ordering) ═══ */
+  /* ══ Layout position registry (DOM ordering) ══ */
   const POSITION_ORDER = ['hero', 'body', 'cta'];
 
   function getLayoutPosition(moduleId) {
@@ -30,17 +30,17 @@
     return map[moduleId] || 'body';
   }
 
-  /* ═══ Component script loader ═══
+  /* ══ Component script loader ══
    * Real component files load themselves into the correct container by
    * querying #a55-hero, #a55-body, #a55-cta, or appending to <body>.
    * The engine's only job is to inject the <script> tag in correct order.
    */
   const COMPONENT_SCRIPTS = {
-    hero_consultant_profile:      'src/components/HeroConsultantProfile.jsx',
-    ent_clinical_accordion:       'src/components/ClinicalAccordion.jsx',
-    whatsapp_direct_routing:      'src/components/WhatsAppDirectRouting_STUB.jsx',
-    patient_intake_triage_v1:     'src/components/PatientIntakeTriage_CRM_v1_STUB.jsx',
-    floating_ai_concierge_v1:     'src/components/FloatingAIConcierge_v1_STUB.jsx',
+    hero_consultant_profile:      'src/components/HeroConsultantProfile.js',
+    ent_clinical_accordion:       'src/components/ClinicalAccordion.js',
+    whatsapp_direct_routing:      'src/components/WhatsAppDirectRouting_STUB.js',
+    patient_intake_triage_v1:     'src/components/PatientIntakeTriage_CRM_v1_STUB.js',
+    floating_ai_concierge_v1:     'src/components/FloatingAIConcierge_v1_STUB.js',
   };
 
   function loadScript(src) {
@@ -59,7 +59,7 @@
     });
   }
 
-  /* ═══ Apply CSS custom properties from theme_tokens ═══ */
+  /* ══ Apply CSS custom properties from theme_tokens ══ */
   function injectThemeTokens() {
     const root = document.documentElement;
     if (THEME.primary_color)   root.style.setProperty('--primary-color', THEME.primary_color);
@@ -67,7 +67,7 @@
     if (THEME.typography)      root.style.setProperty('--font-family', THEME.typography);
   }
 
-  /* ═══ Main layout orchestrator ═══ */
+  /* ══ Main layout orchestrator ══ */
   async function renderLayout() {
     injectThemeTokens();
 
@@ -103,7 +103,7 @@
     console.info('[A55-LayoutEngine] Rendered modules:', MODULES);
   }
 
-  /* ═══ Fallback placeholder renderer ═══ */
+  /* ══ Fallback placeholder renderer ══ */
   function renderPlaceholderFor(moduleId) {
     const pos = getLayoutPosition(moduleId);
     const container = pos === 'floating' ? document.body : document.getElementById('a55-' + pos);
@@ -131,7 +131,7 @@
     }
   }
 
-  /* ═══ Boot ═══ */
+  /* ══ Boot ══ */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', renderLayout);
   } else {
