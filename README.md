@@ -4,7 +4,7 @@ Tenant: `hisham` | Sprint: SPRINT-001 | Target: 2026-05-31
 
 ## Deployment
 
-- **Production:** https://dr-hisham-clinic-pink.vercel.app
+- **Production:** https://dr-hisham-clinic-five.vercel.app
 - **Auto-deploy:** Enabled via Vercel Git integration
 - **CI/CD:** `.github/workflows/deploy.yml`
 
