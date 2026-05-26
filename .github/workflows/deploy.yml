@@ -49,4 +49,4 @@ jobs:
         run: |
           echo "Deployment status: ${{ job.status }}"
           echo "Tenant: hisham"
-          echo "URL: https://dr-hisham-clinic.vercel.app"
+          echo "URL: https://dr-hisham-clinic-five.vercel.app"
