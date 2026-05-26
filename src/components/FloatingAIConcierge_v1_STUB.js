@@ -1,18 +1,18 @@
 /**
  * FloatingAIConcierge_v1_STUB.js
  * Module: floating_ai_concierge_v1
- * SPRINT-001 — Engineer Node (Demo-Ready B2B Onboarding Wizard)
+ * SPRINT-001 — Engineer Node (Demo-Ready Clinic Onboarding Wizard)
  *
  * Core rules:
  * - Fixed-position FAB button outside document flow.
- * - On click: opens a premium slide-up chat tray with pre-scripted mock B2B onboarding flow.
+ * - On click: opens a premium slide-up chat tray with pre-scripted mock clinic onboarding flow.
  * - Close button inside tray. Escape key handler.
  * - Uses env(safe-area-inset-bottom) for iPhone notch safety.
  * - 44px minimum touch targets. text-align: start for RTL safety.
  * - No backend. All responses are pre-scripted and timed for demo flow.
  *
- * Purpose: Nexius Clinics Discovery Agent — B2B onboarding wizard that interviews
- *          doctors to configure their clinic platform and upsells premium features.
+ * Purpose: Clinic Digital Assistant — onboarding wizard that helps
+ *          patients learn about services and connects them with the clinic.
  */
 
 (function () {
@@ -21,17 +21,17 @@
   const CONFIG = window.TENANT_CONFIG || {};
   const MOD_DATA = CONFIG.module_data?.floating_ai_concierge_v1 || {};
 
-  /* ═══ Pre-scripted B2B onboarding conversation ═══ */
+  /* ═════ Pre-scripted clinic onboarding conversation ═════ */
   const SCRIPT = [
-    { sender: 'ai',   text: "Welcome to Nexius Clinics. I am your Platform Architect. Let's design your VIP digital presence, Dr. Hisham. Which core procedures do you want highlighted on your main landing page?", delay: 700 },
-    { sender: 'user', text: "Endoscopic sinus surgery and advanced otology.", delay: 1800 },
-    { sender: 'ai',   text: "Excellent. I will configure the Clinical Accordion for those specialties. Next, how would you like to handle patient intake? We can route standard inquiries to your secretary via WhatsApp, or we can activate the VIP AI Triage module to pre-screen symptoms and gather medical history before they book. Which do you prefer?", delay: 2600 },
-    { sender: 'user', text: "Let's include the VIP AI Triage.", delay: 1800 },
-    { sender: 'ai',   text: "Premium feature added to your configuration. I am compiling your bespoke platform now.", delay: 2200 },
-    { sender: 'ai',   text: "Your configuration is complete. Here's your platform summary: Clinical Accordion — Endoscopic Sinus Surgery, Advanced Otology. Patient Routing — VIP AI Triage + WhatsApp Direct. Estimated setup time: 48 hours. Would you like to proceed with deployment?", delay: 2800, final: true },
+    { sender: 'ai',   text: "Welcome to The Specialized First Clinic. I am your Digital Assistant. How may I help you today?", delay: 700 },
+    { sender: 'user', text: "I would like to learn about endoscopic sinus surgery and advanced otology.", delay: 1800 },
+    { sender: 'ai',   text: "Excellent. Dr. Hisham El-Qaisi specializes in those areas with over 35 years of experience. Would you like to book a consultation or speak with our team via WhatsApp?", delay: 2600 },
+    { sender: 'user', text: "I would like to book a consultation.", delay: 1800 },
+    { sender: 'ai',   text: "Premium service noted. I am preparing your consultation request now.", delay: 2200 },
+    { sender: 'ai',   text: "Your request is complete. Here's your summary: Consultation — Endoscopic Sinus Surgery, Advanced Otology. Contact — WhatsApp Direct or Patient Intake Form. Estimated response time: within 48 hours. Would you like to proceed?", delay: 2800, final: true },
   ];
 
-  /* ═══ Styles (injected once) ═══ */
+  /* ═════ Styles (injected once) ═════ */
   const STYLE_ID = 'a55-concierge-demo-style';
   if (!document.getElementById(STYLE_ID)) {
     const style = document.createElement('style');
@@ -314,14 +314,14 @@
     document.head.appendChild(style);
   }
 
-  /* ═══ Render ═══ */
+  /* ═════ Render ═════ */
   function renderChat() {
     // FAB button
     const fab = document.createElement('button');
     fab.className = 'a55-concierge-fab a55-module a55-module--floating_ai_concierge_v1';
     fab.dataset.moduleId = 'floating_ai_concierge_v1';
     fab.type = 'button';
-    fab.setAttribute('aria-label', 'Nexius Architect Agent');
+    fab.setAttribute('aria-label', 'Clinic Digital Assistant');
     fab.textContent = '\u{2699}';
 
     // Tray
@@ -341,11 +341,11 @@
     const title = document.createElement('h3');
     title.id = 'a55-concierge-title';
     title.className = 'a55-concierge-tray__title';
-    title.textContent = 'Nexius Architect Agent — Platform Configuration';
+    title.textContent = 'Clinic Digital Assistant';
 
     const subtitle = document.createElement('span');
     subtitle.className = 'a55-concierge-tray__subtitle';
-    subtitle.textContent = 'B2B Clinic Onboarding Wizard';
+    subtitle.textContent = 'Patient Services Assistant';
 
     headerText.appendChild(title);
     headerText.appendChild(subtitle);
@@ -370,7 +370,7 @@
     input.type = 'text';
     input.disabled = true;
     input.setAttribute('aria-disabled', 'true');
-    input.placeholder = 'Demo mode — full interactive onboarding coming in SPRINT-002';
+    input.placeholder = 'Demo mode — full interactive support coming in SPRINT-002';
 
     footer.appendChild(input);
 
@@ -407,7 +407,7 @@
     document.body.appendChild(tray);
   }
 
-  /* ═══ Demo script runner ═══ */
+  /* ═════ Demo script runner ═════ */
   function runDemoScript(container) {
     let index = 0;
 
@@ -443,7 +443,7 @@
     function addDeployCTA() {
       const btn = document.createElement('button');
       btn.className = 'a55-chat-deploy-cta';
-      btn.textContent = 'Deploy My Platform';
+      btn.textContent = 'Request Consultation';
       btn.type = 'button';
       btn.addEventListener('click', () => {
         btn.style.pointerEvents = 'none';
@@ -451,7 +451,7 @@
         // Show confirmation message
         const confirm = document.createElement('div');
         confirm.className = 'a55-chat-bubble a55-chat-bubble--ai';
-        confirm.textContent = 'Deployment request submitted. Our engineering team will contact you within 48 hours to finalize your bespoke platform. Welcome to Nexius Clinics.';
+        confirm.textContent = 'Request submitted. Our team will contact you within 48 hours. Welcome to The Specialized First Clinic.';
         container.appendChild(confirm);
         scrollToBottom();
       });
