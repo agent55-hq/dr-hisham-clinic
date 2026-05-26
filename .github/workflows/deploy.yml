@@ -42,7 +42,7 @@ jobs:
             --token=${{ secrets.VERCEL_TOKEN }} \
             --confirm \
             --scope=${{ secrets.VERCEL_ORG_ID }} \
-            --project-id=${{ secrets.VERCEL_PROJECT_ID }}
+            --project=${{ secrets.VERCEL_PROJECT_ID }}
 
       - name: Post Deploy Status
         if: always()
