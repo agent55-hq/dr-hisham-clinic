@@ -1,0 +1,7 @@
+{
+  "tenant_id": "hisham",
+  "tenant_name": "The Specialized First Clinic",
+  "physician": "Dr. Hisham El-Qaisi",
+  "proxy_endpoint": "/api/onboarding-chat",
+  "status": "active"
+}
