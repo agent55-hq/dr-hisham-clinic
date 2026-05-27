@@ -31,7 +31,7 @@ RULES:
   "modules": { "selected": [], "custom": [] }
 }[/EXPORT_READY]`;
 
-const GEMINI_MODEL = 'gemini-1.5-flash-latest';
+const GEMINI_MODEL = 'gemini-1.5-flash';
 
 export default async function handler(req) {
   // CORS preflight
