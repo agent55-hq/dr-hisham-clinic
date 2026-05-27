@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent55 — Build Your Clinic Website</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  </style>
+</head>
+<body>
+  <script src="src/components/OnboardingChatEngine.js"></script>
+  <script src="src/components/OnboardingPortal.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.OnboardingPortal && window.OnboardingPortal.mount) {
+        window.OnboardingPortal.mount();
+      } else {
+        console.error('[onboarding.html] OnboardingPortal not available.');
+      }
+    });
+  </script>
+</body>
+</html>
